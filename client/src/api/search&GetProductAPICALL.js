@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BASE_URL =
-  "http://localhost:5000/api/products";
+  `${import.meta.env.BASE_URL}/api/products`;
 
 export const getAllProductsAPI =
   async ({

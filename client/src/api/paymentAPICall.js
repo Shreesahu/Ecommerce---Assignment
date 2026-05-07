@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BASE_URL =
-  "http://localhost:5000/api/payment";
+  `${import.meta.env.BASE_URL}/api/payment`;
 
 const token =
   localStorage.getItem("token");

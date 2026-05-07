@@ -55,7 +55,7 @@ export default function Login() {
         const result = await confirmationResult.confirm(otp);
         const firebaseToken = await result.user.getIdToken();          
         const res = await axios.post(
-          "http://localhost:5000/api/auth/login",
+          `${import.meta.env.BASE_URL}/api/auth/login`,
           {
             token: firebaseToken,
           },
