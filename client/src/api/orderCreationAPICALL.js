@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BASE_URL =
-  `${import.meta.env.BASE_URL}/api/orders`;
+  `${import.meta.env.VITE_BASE_URL}/api/orders`;
 
 const token =
   localStorage.getItem("token");

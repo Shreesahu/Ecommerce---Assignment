@@ -5,7 +5,7 @@ export const getMostBoughtProductsAPI =
 
     const response =
       await axios.get(
-        `${import.meta.env.BASE_URL}/api/products/most-bought`
+        `${import.meta.env.VITE_BASE_URL}/api/products/most-bought`
       );
 
     return response.data;

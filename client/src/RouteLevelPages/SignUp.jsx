@@ -57,7 +57,7 @@ export default function Signup() {
       const firebaseToken = await result.user.getIdToken();
 
       const res = await axios.post(
-        `${import.meta.env.BASE_URL}/api/auth/signup`,
+        `${import.meta.env.VITE_BASE_URL}/api/auth/signup`,
         {
           token: firebaseToken,
           fullName: form.fullName,
