@@ -1,7 +1,7 @@
 import { Router } from "express";
 import jwtTokenValidator from "../middleware/validator.middleware.js";
 import userInDBChecker from "../middleware/userInDBChecker.middleware.js";
-import { addToWishlistController, removeFromWishlistController, getWishlistController } from "../controllers/wishlist.controller.js";
+import { addToWishlistController, removeFromWishlistController, getWishlistController } from "../controllers/wishList.controller.js";
 
 const router = Router();
 
