@@ -1,0 +1,94 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Cart {
+  id       Int        @id @default(autoincrement())
+  userId   Int        @unique
+  User     User       @relation(fields: [userId], references: [id])
+  CartItem CartItem[]
+}
+
+model CartItem {
+  id        Int     @id @default(autoincrement())
+  cartId    Int
+  productId Int
+  quantity  Int
+  Cart      Cart    @relation(fields: [cartId], references: [id])
+  Product   Product @relation(fields: [productId], references: [id])
+
+  @@unique([cartId, productId])
+}
+
+enum PaymentMode {
+  COD
+  ONLINE
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  FAILED
+  CANCELLED
+}
+
+model Order {
+  id          Int         @id @default(autoincrement())
+  userId      Int
+  totalAmount Decimal
+  paymentMode PaymentMode
+  status      OrderStatus       @default(PENDING)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  User        User        @relation(fields: [userId], references: [id])
+  OrderItem   OrderItem[]
+}
+
+model OrderItem {
+  id        Int     @id @default(autoincrement())
+  orderId   Int
+  productId Int
+  price     Decimal
+  quantity  Int
+  Order     Order   @relation(fields: [orderId], references: [id])
+  Product   Product @relation(fields: [productId], references: [id])
+}
+
+model Product {
+  id          Int         @id @default(autoincrement())
+  title       String
+  price       Float
+  description String
+  category    String
+  imageUrl    String
+  sold        Boolean     @default(false)
+  isSale      Boolean     @default(false)
+  dateOfSale  DateTime?
+  CartItem    CartItem[]
+  OrderItem   OrderItem[]
+  Wishlist Wishlist[]
+}
+
+model Wishlist {
+
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  productId Int
+  user      User     @relation(fields: [userId], references: [id])
+  product   Product  @relation(fields: [productId], references: [id])
+  @@unique([userId, productId])
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  mobile    String   @unique
+  fullName  String?
+  createdAt DateTime @default(now())
+  Cart      Cart?
+  Order     Order[]
+  Wishlist Wishlist[]
+}
