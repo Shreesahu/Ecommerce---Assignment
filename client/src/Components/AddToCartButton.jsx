@@ -1,7 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-
 import { addCartAPI } from "../api/CartAPICall.js";
-
 import { addToCart } from "../ReduxSlice/user/cartSlice.js";
 
 export default function AddToCartButton({ product }) {

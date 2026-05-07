@@ -1,19 +1,13 @@
 import { useEffect } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
-
 import { getAllOrdersAPI } from "../api/orderCreationAPICALL";
-
 import { setOrders } from "../ReduxSlice/user/orderSlice";
-
 import UserInfo from "../Components/UserInfo";
 import Orders from "../Components/Orders";
 
 export default function Profile() {
   const dispatch = useDispatch();
-
   const currentUser = useSelector((state) => state.auth.user);
-
   const orders = useSelector((state) => state.orders.orders);
 
   useEffect(() => {
@@ -41,13 +35,10 @@ export default function Profile() {
   return (
     <div className="min-h-screen bg-gray-100 px-4 py-8">
       <div className="mx-auto max-w-7xl space-y-8">
-        {/* PROFILE */}
 
         <div className="overflow-hidden rounded-3xl bg-white shadow-sm">
           <UserInfo user={currentUser} />
         </div>
-
-        {/* ORDERS */}
 
         <div className="rounded-3xl bg-white p-6 shadow-sm">
           <div className="mb-6">

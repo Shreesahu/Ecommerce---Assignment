@@ -44,8 +44,6 @@ export const addToCartService = async ({ userId, productId, quantity = 1 }) => {
   return { message: "Item added to cart" };
 };
 
-
-
 export const getUserCartService = async ({ userId }) => {
 
   const cart = await prisma.cart.findUnique({
@@ -63,8 +61,6 @@ export const getUserCartService = async ({ userId }) => {
 
   return { items: cart.CartItem };
 };
-
-
 
 export const updateCartItemService = async ({ userId, productId, quantity }) => {
 
@@ -96,8 +92,6 @@ export const updateCartItemService = async ({ userId, productId, quantity }) => 
 };
 };
 
-
-
 export const removeFromCartService = async ({ userId, productId }) => {
 
   const cart = await prisma.cart.findUnique({
@@ -118,23 +112,17 @@ export const removeFromCartService = async ({ userId, productId }) => {
   return { message: "Item removed" , items };
 };
 
-export const clearCartService = async (
-  userId
-) => {
+export const clearCartService = async (userId) => {
 
   const cart = await prisma.cart.findUnique({
 
-    where: {
-      userId,
-    },
+    where: {userId,},
   });
 
   if (!cart) return;
 
   await prisma.cartItem.deleteMany({
 
-    where: {
-      cartId: cart.id,
-    },
+    where: {cartId: cart.id,},
   });
 };

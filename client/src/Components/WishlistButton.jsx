@@ -7,9 +7,7 @@ export default function WishlistButton({ product }) {
 
   const wishlistItems = useSelector((state) => state.wishlist);
 
-  const isWishlisted = wishlistItems.some(
-    (item) => item.product.id === product.id,
-  );
+  const isWishlisted = wishlistItems.some((item) => item.product.id === product.id,);
 
   const handleWishlist = async (e) => {
     e.stopPropagation();

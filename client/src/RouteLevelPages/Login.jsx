@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-
 import firebaseAuthFunction from "../Utils/fireBaseAuth.js";
 import { login } from "../ReduxSlice/user/auth&UserSlice.js";
 
@@ -10,11 +9,7 @@ export default function Login() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const [form, setForm] = useState({
-    phone: "",
-  });
-
+  const [form, setForm] = useState({phone: "",});
   const [otp, setOtp] = useState("");
   const [otpSent, setOtpSent] = useState(false);
   const [confirmationResult, setConfirmationResult] = useState(null);
@@ -29,9 +24,7 @@ export default function Login() {
     if (!form.phone) {
       return setError("Phone number is required");
     }
-
     try {
-
       setLoading(true);
       setError("");
 
@@ -46,39 +39,28 @@ export default function Login() {
       setError("Failed to send OTP");
 
     } finally {
-
       setLoading(false);
-
     }
   };
 
-
   const handleVerifyOtp = async () => {
-
     if (!otp) {
       return setError("OTP is required");
     }
-
     try {
 
       setLoading(true);
       setError("");
 
-      
-      const result = await confirmationResult.confirm(otp);
-
-      
-      const firebaseToken = await result.user.getIdToken();
-
-      
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
-        {
-          token: firebaseToken,
-        },
-      );
-
-      
+        const result = await confirmationResult.confirm(otp);
+        const firebaseToken = await result.user.getIdToken();          
+        const res = await axios.post(
+          "http://localhost:5000/api/auth/login",
+          {
+            token: firebaseToken,
+          },
+        );
+     
       localStorage.setItem("token", res.data.token);
       console.log(res.data.user , "Login User")
       dispatch(login(res.data.user));
@@ -97,16 +79,13 @@ export default function Login() {
       }
 
     } finally {
-
       setLoading(false);
-
     }
   };
 
   return (
     <div className="h-screen w-screen overflow-hidden relative">
 
-      {/* Background */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
@@ -115,24 +94,16 @@ export default function Login() {
         }}
       />
 
-      {/* Overlay */}
       <div className="absolute inset-0 bg-black/50"></div>
 
-      {/* Form */}
       <div className="relative z-10 flex items-center justify-center h-full">
-
         <div className="bg-white/10 backdrop-blur-md p-8 rounded-2xl w-[350px] text-white shadow-xl">
-
-          <h1 className="text-3xl font-bold mb-6 text-center">
-            Login
-          </h1>
-
+          <h1 className="text-3xl font-bold mb-6 text-center">Login</h1>
           <form
             onSubmit={handleSendOtp}
             className="flex flex-col gap-4"
           >
 
-            {/* Phone */}
             <input
               required
               type="tel"
@@ -147,7 +118,6 @@ export default function Login() {
               className="p-3 rounded bg-white/20 outline-none focus:ring-2 focus:ring-white"
             />
 
-            {/* OTP */}
             {otpSent && (
               <input
                 required
@@ -159,7 +129,6 @@ export default function Login() {
               />
             )}
 
-            {/* Button */}
             {!otpSent ? (
               <button
                 type="submit"
@@ -179,14 +148,12 @@ export default function Login() {
               </button>
             )}
 
-            {/* Error */}
             {error && (
               <p className="text-red-400 text-center text-sm">
                 {error}
               </p>
             )}
 
-            {/* Redirect */}
             <p className="text-center text-sm mt-4 text-white/80">
               Don't have an account?{" "}
               <span

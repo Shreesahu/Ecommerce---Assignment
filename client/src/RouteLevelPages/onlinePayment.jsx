@@ -1,27 +1,20 @@
 import { useNavigate, useParams } from "react-router-dom";
-
 import { completePaymentAPI, cancelPaymentAPI } from "../api/paymentAPICall.js";
-
 import { useDispatch } from "react-redux";
-
 import { clearCart } from "../ReduxSlice/user/cartSlice";
 import { clearCartAPI } from "../api/CartAPICall.js";
 
 export default function Payment() {
   const { id } = useParams();
-
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
 
   const handlePayment = async () => {
     try {
       await completePaymentAPI(id);
-
       await clearCartAPI();
 
       dispatch(clearCart());
-
       navigate(`/order-success/${id}`);
     } catch (error) {
       console.log(error);

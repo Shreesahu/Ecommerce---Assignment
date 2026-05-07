@@ -7,7 +7,6 @@ import userInDBChecker from "../middleware/userInDBChecker.middleware.js";
 const router = Router();
 
 router.patch("/pay/:id", jwtTokenValidator, userInDBChecker,completePaymentController);
-
 router.patch("/payment-cancel/:id", jwtTokenValidator, userInDBChecker,
   cancelPaymentController
 );

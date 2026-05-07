@@ -1,7 +1,4 @@
-import {
-  completePaymentService,
-  cancelPaymentService,
-} from "../services/payment.service.js";
+import { completePaymentService, cancelPaymentService, } from "../services/payment.service.js";
 
 export const completePaymentController = async (req, res) => {
 

@@ -10,24 +10,16 @@ export const getAllProductService = async({cursor , limit})=>{
         }
     };
 
-
     if(cursor){
-        //if cursor have any value than we gonna add cursor to the query 
-        //cursor just tells the what was the last product id so that we will access value after that product
-        queryWithPaginationLogic.cursor = {
+       queryWithPaginationLogic.cursor = {
             id: parseInt(cursor)
         };
         queryWithPaginationLogic.skip = 1;//this one to remove 1st duplicate product like cursor value is 57 then from db it gonna give us product from 57 to next 10 product so we will have to skip 57 as it was the last product id.
     }
 
-
-    //once query is ready we will send query to the product table of our db
-
     const getProductFromDB = await prisma.product.findMany(queryWithPaginationLogic);
 
     console.log(getProductFromDB , "getProductFromDB");
-    
-    //now we will increase the value of cursor by 10
 
     const nextProductCursor = getProductFromDB.length===limit?getProductFromDB[getProductFromDB.length - 1].id:null;
 

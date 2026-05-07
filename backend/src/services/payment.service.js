@@ -1,13 +1,7 @@
 import prisma from "../db/prisma.js";
 
 
-
-
-
-export const completePaymentService = async ({
-  orderId,
-  userId,
-}) => {
+export const completePaymentService = async ({orderId,userId}) => {
 
   const order = await prisma.order.findUnique({
     where: {
@@ -37,10 +31,7 @@ export const completePaymentService = async ({
   return updatedOrder;
 };
 
-export const cancelPaymentService = async ({
-  orderId,
-  userId,
-}) => {
+export const cancelPaymentService = async ({orderId,userId}) => {
 
   const order = await prisma.order.findUnique({
     where: {
@@ -58,9 +49,7 @@ export const cancelPaymentService = async ({
 
   const updatedOrder = await prisma.order.update({
 
-    where: {
-      id: orderId,
-    },
+    where: { id: orderId},
 
     data: {
       status: "CANCELLED",

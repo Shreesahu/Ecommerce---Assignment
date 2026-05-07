@@ -19,9 +19,10 @@ import TrackMyOrders from "../RouteLevelPages/TrackMyOrders.jsx";
 export default function AppRoutes() {
   return (
     <BrowserRouter>
+    {/*putting this for loading firebase recaptcha*/}
     <div id="recaptcha-container"></div> 
       <Routes>
-          {/* //public routes */}
+          {/* public routes */}
         <Route element={<PublicRoute />}>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />

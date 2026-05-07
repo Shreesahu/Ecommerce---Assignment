@@ -3,10 +3,9 @@ import { auth } from "./firebaseconfig";
 
 const firebaseAuthFunction = async (phone) => {
   try {
-    // ✅ Create ONLY once
     if (!window.recaptchaVerifier) {
       window.recaptchaVerifier = new RecaptchaVerifier(
-        auth, // important: your setup needs this order
+        auth, 
         "recaptcha-container",
         {
           size: "invisible",
@@ -18,7 +17,6 @@ const firebaseAuthFunction = async (phone) => {
 
     const phoneNumber = `+91${phone.trim()}`;
 
-    // ✅ ALWAYS reuse same verifier
     const confirmationResult = await signInWithPhoneNumber(
       auth,
       phoneNumber,

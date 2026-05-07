@@ -20,7 +20,7 @@ export default function Signup() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // ✅ Send OTP
+
   const handleSendOtp = async () => {
     if (!form.fullName || !form.mobile) {
       return setError("All fields are required");
@@ -42,7 +42,6 @@ export default function Signup() {
     }
   };
 
-  // ✅ Verify OTP + Signup
   const handleVerifyOtp = async () => {
     if (!otp) {
       return setError("OTP is required");
@@ -85,7 +84,6 @@ export default function Signup() {
 
   return (
     <div className="h-screen w-screen overflow-hidden relative">
-      {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
@@ -94,15 +92,12 @@ export default function Signup() {
         }}
       />
 
-      {/* Overlay */}
       <div className="absolute inset-0 bg-black/50"></div>
-
       <div className="relative z-10 flex items-center justify-center h-full">
         <div className="bg-white/10 backdrop-blur-lg border border-white/20 p-8 rounded-2xl w-[350px] text-white shadow-xl">
           <h2 className="text-3xl font-bold mb-6 text-center">Signup</h2>
 
           <div className="flex flex-col gap-4">
-            {/* Full Name */}
             <input
               required
               placeholder="Full Name"
@@ -115,8 +110,6 @@ export default function Signup() {
               }
               className="p-3 rounded bg-white/20 placeholder-white/70 outline-none focus:ring-2 focus:ring-white"
             />
-
-            {/* Phone */}
             <input
               required
               type="tel"
@@ -131,7 +124,6 @@ export default function Signup() {
               className="p-3 rounded bg-white/20 placeholder-white/70 outline-none focus:ring-2 focus:ring-white"
             />
 
-            {/* OTP */}
             {otpSent && (
               <input
                 required
@@ -143,7 +135,6 @@ export default function Signup() {
               />
             )}
 
-            {/* Button */}
             {!otpSent ? (
               <button
                 onClick={handleSendOtp}
@@ -162,12 +153,10 @@ export default function Signup() {
               </button>
             )}
 
-            {/* Error */}
             {error && (
               <p className="text-red-400 text-center text-sm">{error}</p>
             )}
 
-            {/* Redirect */}
             <p className="text-center text-sm mt-4 text-white/80">
               Already have an account?{" "}
               <span

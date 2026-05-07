@@ -9,12 +9,8 @@ import {
 
 export const getAllProductController = async (req, res) => {
   try {
-    //we will put logic for infinite scroll also in the product.service.js file
 
     let { cursor, limit } = req.query;
-
-    // If there is something in the limit query then parse it and if it is empty in that case set the value to 10 in the variable.
-
     limit = limit ? parseInt(limit) : 10;
 
     const getProduct = await getAllProductService({
@@ -39,7 +35,6 @@ export const getAllProductController = async (req, res) => {
 
 export const getProductByIDController = async (req, res) => {
   try {
-    // Convert the id into decimal number from string
     let productId = parseInt(req.params.id, 10);
 
     if (!productId) {

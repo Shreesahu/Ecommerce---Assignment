@@ -114,15 +114,12 @@ export const cancelOrderService = async ({ orderId, userId }) => {
 };
 
 
-export const getAllOrdersService =
-  async (userId) => {
+export const getAllOrdersService = async (userId) => {
 
     const orders =
       await prisma.order.findMany({
 
-        where: {
-          userId,
-        },
+        where: {userId,},
 
         include: {
 

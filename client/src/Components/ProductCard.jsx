@@ -1,20 +1,13 @@
 import { useDispatch } from "react-redux";
-
 import AddToCartButton from "./AddToCartButton.jsx";
 import WishlistButton from "./WishlistButton.jsx";
-
-import {
-  removeFromCart,
-  updateCartItem,
-} from "../ReduxSlice/user/cartSlice.js";
-
+import {removeFromCart,updateCartItem } from "../ReduxSlice/user/cartSlice.js";
 import { removeCartAPI, updateCartAPI } from "../api/CartAPICall.js";
-
 import { useNavigate } from "react-router-dom";
 
-export default function ProductCard({ product, mode = "home", quantity }) {
+export default function ProductCard({ product, mode = "home", quantity,totalSold,
+}) {
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
 
   const handleItemRemoveFromCart = async (e) => {
@@ -61,7 +54,6 @@ export default function ProductCard({ product, mode = "home", quantity }) {
       onClick={() => navigate(`/product/${product.id}`)}
       className="group cursor-pointer overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
     >
-      {/* IMAGE */}
 
       <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
         <img
@@ -69,8 +61,6 @@ export default function ProductCard({ product, mode = "home", quantity }) {
           alt={product.title}
           className="h-full w-full object-cover object-center transition duration-300 group-hover:scale-105"
         />
-
-        {/* BADGES */}
 
         <div className="absolute left-3 top-3 flex gap-2">
           {product.isSale && (
@@ -86,19 +76,20 @@ export default function ProductCard({ product, mode = "home", quantity }) {
           )}
         </div>
 
-        {/* WISHLIST */}
-
         {mode !== "cart" && (
           <div className="absolute right-3 top-3">
             <WishlistButton product={product} />
           </div>
         )}
+
+        {totalSold && (
+          <div className="absolute bottom-3 right-3 rounded-full bg-black/80 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
+            {totalSold} sold
+          </div>
+        )}
       </div>
 
-      {/* CONTENT */}
-
       <div className="flex h-[220px] flex-col justify-between p-4">
-        {/* TEXT */}
 
         <div className="space-y-2">
           <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
@@ -121,8 +112,6 @@ export default function ProductCard({ product, mode = "home", quantity }) {
             {product.sold ? "Out of Stock" : "In Stock"}
           </p>
         </div>
-
-        {/* PRICE + ACTION */}
 
         <div className="flex items-center justify-between gap-3 pt-4">
           <span className="text-2xl font-bold text-gray-950">
@@ -151,8 +140,6 @@ export default function ProductCard({ product, mode = "home", quantity }) {
             <AddToCartButton product={product} />
           )}
         </div>
-
-        {/* REMOVE BUTTON */}
 
         {mode === "cart" && (
           <button

@@ -1,25 +1,16 @@
 import { useState } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
-
 import { useNavigate } from "react-router-dom";
-
 import { createOrderAPI } from "../api/orderCreationAPICALL.js";
-
 import ProductCard from "../Components/ProductCard.jsx";
-
 import { clearCart } from "../ReduxSlice/user/cartSlice";
 import { clearCartAPI } from "../api/CartAPICall.js";
 
 export default function Cart() {
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
-
   const [paymentMode, setPaymentMode] = useState("COD");
-
   const [loading, setLoading] = useState(false);
-
   const items = useSelector((state) => state.cart.items);
 
   const totalPrice = items.reduce(
@@ -51,16 +42,14 @@ export default function Cart() {
         await clearCartAPI();
 
         dispatch(clearCart());
-
         navigate(`/order-success/${orderId}`);
 
         return;
       }
-
       navigate(`/payment/${orderId}`);
+
     } catch (error) {
       console.log(error);
-
       alert(error.response?.data?.message || "Failed to place order");
     } finally {
       setLoading(false);
@@ -78,9 +67,7 @@ export default function Cart() {
   return (
     <div className="min-h-screen bg-gray-100 px-6 py-10">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8">
-        {/* LEFT SIDE */}
         <div>
-          {/* HEADER */}
           <div className="flex items-center justify-between mb-6">
             <div>
               <h1 className="text-4xl font-bold">Cart</h1>
@@ -97,8 +84,6 @@ export default function Cart() {
               Clear all
             </button>
           </div>
-
-          {/* CART ITEMS */}
           <div className="space-y-6">
             {items.map((item) => (
               <ProductCard
@@ -110,8 +95,6 @@ export default function Cart() {
             ))}
           </div>
         </div>
-
-        {/* RIGHT SIDE */}
         <div className="lg:mt-[90px] h-fit sticky top-24 rounded-2xl bg-white p-6 shadow-sm border border-gray-200">
           <h2 className="text-2xl font-bold mb-6">Order Summary</h2>
 
@@ -121,8 +104,6 @@ export default function Cart() {
 
               <span className="font-semibold">{totalItems}</span>
             </div>
-
-            {/* PAYMENT OPTIONS */}
             <div>
               <p className="mb-3 font-semibold">Payment Method</p>
 

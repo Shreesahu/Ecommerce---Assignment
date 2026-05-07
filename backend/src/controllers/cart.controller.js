@@ -1,11 +1,4 @@
-import {
-  addToCartService,
-  getUserCartService,
-  updateCartItemService,
-  removeFromCartService,
-  clearCartService
-} from "../services/cart.service.js";
-
+import { addToCartService, getUserCartService, updateCartItemService, removeFromCartService, clearCartService } from "../services/cart.service.js";
 
 
 export const getUserCartController = async (req, res) => {
@@ -21,8 +14,6 @@ export const getUserCartController = async (req, res) => {
     res.status(500).json({ message: "Failed to fetch cart" });
   }
 };
-
-
 
 export const addToCartController = async (req, res) => {
   try {
@@ -41,8 +32,6 @@ export const addToCartController = async (req, res) => {
     res.status(500).json({ message: "Failed to add item" });
   }
 };
-
-
 
 export const updateCartItemController = async (req, res) => {
   try {
@@ -71,8 +60,6 @@ export const updateCartItemController = async (req, res) => {
   }
 };
 
-
-
 export const removeFromCartController = async (req, res) => {
   try {
     const { productId } = req.body;
@@ -95,11 +82,8 @@ export const removeFromCartController = async (req, res) => {
   }
 };
 
-export const clearCartController = async (
-  req,
-  res
-) => {
-
+export const clearCartController = async (req,res) => {
+  
   try {
 
     await clearCartService(
