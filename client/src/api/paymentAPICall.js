@@ -1,10 +1,9 @@
 import axios from "axios";
+import { getAuthConfig } from "../Utils/getAuthConfig";
+
 
 const BASE_URL =
   `${import.meta.env.VITE_BASE_URL}/api/payment`;
-
-const token =
-  localStorage.getItem("token");
 
 export const completePaymentAPI =
   async (orderId) => {
@@ -13,12 +12,7 @@ export const completePaymentAPI =
       await axios.patch(
         `${BASE_URL}/pay/${orderId}`,
         {},
-        {
-          headers: {
-            Authorization:
-              `Bearer ${token}`,
-          },
-        }
+        getAuthConfig()
       );
 
     console.log(
@@ -36,12 +30,7 @@ export const cancelPaymentAPI =
       await axios.patch(
         `${BASE_URL}/payment-cancel/${orderId}`,
         {},
-        {
-          headers: {
-            Authorization:
-              `Bearer ${token}`,
-          },
-        }
+        getAuthConfig()
       );
 
     console.log(

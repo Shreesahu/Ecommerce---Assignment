@@ -1,10 +1,9 @@
 import axios from "axios";
+import { getAuthConfig } from "../Utils/getAuthConfig";
 
-const BASE_URL =
-  `${import.meta.env.VITE_BASE_URL}/api/orders`;
 
-const token =
-  localStorage.getItem("token");
+const BASE_URL = `${import.meta.env.VITE_BASE_URL}/api/orders`;
+
 
 export const createOrderAPI =
   async (data) => {
@@ -13,12 +12,7 @@ export const createOrderAPI =
       await axios.post(
         `${BASE_URL}/add`,
         data,
-        {
-          headers: {
-            Authorization:
-              `Bearer ${token}`,
-          },
-        }
+        getAuthConfig(),
       );
 
     console.log(
@@ -35,12 +29,7 @@ export const getAllOrdersAPI =
     const response =
       await axios.get(
         `${BASE_URL}/all`,
-        {
-          headers: {
-            Authorization:
-              `Bearer ${token}`,
-          },
-        }
+        getAuthConfig(),
       );
 
     console.log(

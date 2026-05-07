@@ -1,16 +1,7 @@
 import axios from "axios";
-
+import { getAuthConfig } from "../Utils/getAuthConfig";
 const BASE_URL = `${import.meta.env.VITE_BASE_URL}/api/cart`;
 
-const getAuthConfig = () => {
-  const token = localStorage.getItem("token");
-
-  return {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
-};
 
 export const getCartAPI = async () => {
   const response = await axios.get(`${BASE_URL}/items`, getAuthConfig());
