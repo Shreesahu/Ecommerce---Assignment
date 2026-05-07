@@ -7,7 +7,7 @@ import authRouter from "./src/routers/auth.router.js";
 import productRouter from "./src/routers/product.router.js";
 import cartRouter from "./src/routers/cart.router.js";
 import orderRouter from "./src/routers/orderManagement.router.js";
-import wishlistRouter from "./src/routers/wishlist.router.js";
+import wishlistRouter from "./src/routers/wishList.router.js";
 import paymentRouter from "./src/routers/payment.router.js"
 
 const app = express();
