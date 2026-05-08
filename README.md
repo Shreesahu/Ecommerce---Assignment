@@ -5,10 +5,8 @@
 Frontend URL: 
 ```bash
 https://ecommerce-assignment-teal.vercel.app
-
-Backend Base URL:
 ```
-
+Backend Base URL:
 ```bash
 https://ecommerce-assignment-sfbz.onrender.com
 ```
