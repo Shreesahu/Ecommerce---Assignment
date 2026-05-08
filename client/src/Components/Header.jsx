@@ -6,7 +6,7 @@ import { useState } from "react";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const user = useSelector((state) => state.auth.currentUser);
+  const user = useSelector((state) => state.auth.user);
   const cartItems = useSelector((state) => state.cart.items);
   const wishlistItems = useSelector((state) => state.wishlist);
   const dispatch = useDispatch();
@@ -76,10 +76,9 @@ export default function Header() {
             <User size={18} />
             Profile
           </Link>
-          \
           {user && (
             <span className="rounded-full bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700">
-              Hi, {user.fullName}
+              Hi, {user.fullName} {console.log(user,  "user inheader")}
             </span>
           )}
           <button
@@ -156,7 +155,7 @@ export default function Header() {
 
             {user && (
               <div className="rounded-lg bg-gray-100 px-4 py-3 text-sm font-medium text-gray-700">
-                Hi, {user.full_name}
+                Hi, {user.fullName}
               </div>
             )}
 
